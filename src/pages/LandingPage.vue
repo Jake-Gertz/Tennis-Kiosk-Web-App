@@ -3,10 +3,15 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-const username = ref('');
+const userID = ref('');
 
  const handleClick = () => {
+  if(userID.value.trim() === '9999') {
     router.push('/UserPage');
+  } else {
+    /* Update this alert message*/
+    alert('Wrong UserID')
+  }
  };
 </script>
 
@@ -16,7 +21,7 @@ const username = ref('');
         <img src="/BroncoLogo.svg" class="logo" alt="Bronco Logo" />
       
       <div class="loginContainer">
-        <input v-model="username" placeholder="Enter User ID" />
+        <input v-model="userID" placeholder="Enter User ID" />
         <button @click="handleClick">Login</button>
       </div>
     </div>
