@@ -1,2 +1,5 @@
-# Tennis-Kiosk-Web-App
-This application is an evolution of my tennis stringing kiosk written purely in java. This project is designed to create a web application that can be realistically deployed, look professional, and function far better than my java version of this project! It is a V2 of my stringing kiosk if you would like to view it that way!
+# Vue 3 + Vite
+
+This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+
+Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
