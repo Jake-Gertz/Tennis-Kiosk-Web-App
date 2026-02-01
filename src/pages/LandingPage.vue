@@ -10,9 +10,9 @@ const userID = ref('');
 const handleClick = async () => {
   if(userID.value.trim() !== "") {
     try {
-      const response = await fetch('http://localhost:8080/checl-user', {
+      const response = await fetch('http://localhost:8080/check-user', {
         method: 'POST',
-        body: JSON.stringify({ userID: username.value }),
+        body: JSON.stringify({ userId: userID.value }),
         headers: { 'Content-type': 'application/json'}
       });
 
@@ -25,6 +25,8 @@ const handleClick = async () => {
     } catch (error) {
       console.error("Go server did not respond", error);        
     }
+  } else {
+    alert("Please enter a user ID:");
   }
 };
 
