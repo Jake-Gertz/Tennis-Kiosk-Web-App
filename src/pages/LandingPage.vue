@@ -18,7 +18,7 @@ const handleClick = async () => {
 
       const data = await response.json();
       if(data.exists) {
-        router.push('/UserPage')
+        router.push('/StringerPage')
       } else {
         alert("Incorrect ID: " + userID.value.trim());
       }
