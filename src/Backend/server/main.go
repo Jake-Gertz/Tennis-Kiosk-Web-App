@@ -20,7 +20,6 @@ type UserResponse struct {
 }
 
 func main() {
-	// 1. Open (or create) the SQLite database
 	db, err := sql.Open("sqlite", "./users.db")
 
 	if err != nil {
@@ -28,9 +27,31 @@ func main() {
 	}
 	defer db.Close()
 
-	// 2. Create the table if it doesn't exist
-	statement, _ := db.Prepare("CREATE TABLE IF NOT EXISTS users (id TEXT PRIMARY KEY)")
-	statement.Exec()
+	// Strings will have a string that represetns first their name and second their tension after a | as a seperator
+
+	// Create the user info table if it does not exist
+	userInfoTable := "CREATE TABLE IF NOT EXISTS userInfoTable (userID INTEGER PRIMARY KEY, stringerID INTEGER, defaultRacket TEXT, defaultMainString TEXT, defaultCrossString TEXT);"
+	_, userInfoErr := db.Exec(userInfoTable)
+
+	if userInfoErr != nil {
+		log.Fatal(userInfoErr)
+	}
+
+	// Create the Rackets to pick up table
+	racketsToPickUpTable := "CREATE TABLE IF NOT EXISTS racketsToPickUp (pickupID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, racket TEXT, mainString TEXT, crossString TEXT, dateStrung TEXT);"
+	_, racketsToPickUpErr := db.Exec(racketsToPickUpTable)
+
+	if racketsToPickUpErr != nil {
+		log.Fatal(racketsToPickUpErr)
+	}
+
+	// Create the rackets to string table
+	racktsToStringTable := "CREATE TABLE IF NOT EXISTS racketsToStringTable (dropoffID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, racket TEXT, mainString TEXT, crossString TEXT, dateDropedOff TEXT, stringerID INTEGER);"
+	_, racketsToStringErr := db.Exec(racktsToStringTable)
+
+	if racketsToStringErr != nil {
+		log.Fatal(racketsToStringErr)
+	}
 
 	addDefaultIDs(db)
 
@@ -61,6 +82,7 @@ func main() {
 
 }
 
+/* need to refactor this whole thing since we changed how the db works */
 func addDefaultIDs(db *sql.DB) {
 	var count int
 
