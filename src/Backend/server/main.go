@@ -32,7 +32,7 @@ func main() {
 	statement, _ := db.Prepare("CREATE TABLE IF NOT EXISTS users (id TEXT PRIMARY KEY)")
 	statement.Exec()
 
-	addAdminIDs(db)
+	addDefaultIDs(db)
 
 	// 3. Define the API endpoint
 	http.HandleFunc("/check-user", func(w http.ResponseWriter, r *http.Request) {
@@ -61,18 +61,22 @@ func main() {
 
 }
 
-func addAdminIDs(db *sql.DB) {
+func addDefaultIDs(db *sql.DB) {
 	var count int
 
 	db.QueryRow("SELECT COUNT(*) FROM users").Scan(&count)
 
-	if count == 0 {
+	if count < 3 {
 		defaultAdminID := "9999"
+		defaultStringerID := "8888"
+		defaultUserID := "7777"
 
-		_, err := db.Exec("INSERT INTO users (id) VALUES (?)", defaultAdminID)
+		_, err1 := db.Exec("INSERT INTO users (id) VALUES (?)", defaultAdminID)
+		_, err2 := db.Exec("INSERT INTO users (id) VALUES (?)", defaultStringerID)
+		_, err3 := db.Exec("INSERT INTO users (id) VALUES (?)", defaultUserID)
 
-		if err != nil {
-			log.Println("Error inserting admin ID: ", err)
+		if err1 != nil && err2 != nil && err3 != nil {
+			log.Println("Error inserting admin ID: ", err1, err2, err3)
 		}
 	}
 }

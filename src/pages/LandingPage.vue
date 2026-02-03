@@ -17,9 +17,13 @@ const handleClick = async () => {
       });
 
       const data = await response.json();
-      if(data.exists) {
-        router.push('/StringerPage')
-      } else {
+      if(data.exists && userID.value == "9999") {
+        router.push('/AdminPage')
+      } else if (data.exists && userID.value == "8888") {
+          router.push('/StringerPage')
+      } else if (data.exists && userID.value == "7777"){
+          router.push('/UserPage')
+      }  else {
         alert("Incorrect ID: " + userID.value.trim());
       }
     } catch (error) {

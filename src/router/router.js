@@ -2,6 +2,7 @@ import { createRouter , createWebHistory} from 'vue-router';
 import UserPage from '../pages/UserPage.vue';
 import LandingPage from '../pages/LandingPage.vue';
 import StringerPage from '../pages/StringerPage.vue'
+import AdminPage from '../pages/AdminPage.vue'
 
 const routes = [
   {
@@ -20,6 +21,12 @@ const routes = [
     path: '/StringerPage',
     name: 'StringerPage',
     component: StringerPage
+  },
+
+  {
+    path: '/AdminPage',
+    name: 'AdminPage',
+    component: AdminPage
   }
 ];
 

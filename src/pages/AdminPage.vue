@@ -1,5 +1,5 @@
 <script setup>
-/* TODO Update user page */
+/* TODO Update admin page */
 import { useRouter } from 'vue-router';
 
     const router = useRouter();
@@ -11,7 +11,7 @@ import { useRouter } from 'vue-router';
 
 <template>
     <p>
-        User page under construction
+        Admin page under construction
     </p>
 
     <div class = "logoutButton">
